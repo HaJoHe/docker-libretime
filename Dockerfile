@@ -14,13 +14,17 @@ ENV container docker
 
 MAINTAINER Hans-Joachim
 
-
+#
+# Install some rudimental stuff
+# + packages needed by libetime_watch.py (not yet in the master)
 RUN locale-gen --purge en_US.UTF-8 \
     && update-locale LANG=en_US.UTF-8  LANGUAGE=en_US:en  LC_ALL=en_US.UTF-8 \
     && apt-get update && apt-get dist-upgrade -y \
-    && apt-get install -y python-gst-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-ugly git rabbitmq-server apache2 curl postgresql postgresql-contrib
+    && apt-get install -y  python-psycopg2 nano\
+        python-gst-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-base \
+        gstreamer1.0-plugins-ugly git rabbitmq-server apache2 curl postgresql postgresql-contrib
 #
-# prepare stuff
+# Install libretime
 #
 COPY help/prep_os.sh /prep_os.sh
 RUN /prep_os.sh
@@ -51,10 +55,13 @@ RUN /usr/sbin/update-rc.d -f ondemand remove; \
 	done; \
 	echo '# /lib/init/fstab: cleared out for bare-bones Docker' > /lib/init/fstab
 
+#
+# copy the script for the 1st run
+#
 COPY 1st_start.conf /etc/init
 
 VOLUME ["/etc/airtime", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
 
-EXPOSE 80 15672 8000
+EXPOSE 80 8000
 
 CMD ["/sbin/init"]
