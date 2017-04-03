@@ -16,13 +16,11 @@ MAINTAINER Hans-Joachim
 
 #
 # Install some rudimental stuff
-# + packages needed by libetime_watch.py (not yet in the master)
 RUN locale-gen --purge en_US.UTF-8 \
     && update-locale LANG=en_US.UTF-8  LANGUAGE=en_US:en  LC_ALL=en_US.UTF-8 \
     && apt-get update && apt-get dist-upgrade -y \
-    && apt-get install -y  python-psycopg2 nano\
-        python-gst-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-base \
-        gstreamer1.0-plugins-ugly git rabbitmq-server apache2 curl postgresql postgresql-contrib
+    && apt-get install -y  python-psycopg2 nano \
+        git rabbitmq-server apache2 curl postgresql postgresql-contrib
 #
 # Install libretime
 #
