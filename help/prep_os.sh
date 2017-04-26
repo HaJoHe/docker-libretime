@@ -42,6 +42,9 @@ apt-get clean
 echo "Saving /etc/airtime .."
 tar czf /etc/airtime.tgz /etc/airtime
 rm -rf /etc/airtime
+echo "Saving /etc/icecast2 .."
+tar czf /etc/icecast2.tgz /etc/icecast2
+rm -rf /etc/icecast2
 echo "Saving postgres"
 tar czf /var/lib/postgresql.tgz /var/lib/postgresql
 rm -rf /var/lib/postgresql

@@ -4,13 +4,15 @@
 docker run -d --restart=always -h libretime --name libretime \
  -v /srv/libretime/stor:/srv/airtime/stor \
  -v /srv/libretime/watch:/srv/airtime/watch \
- -v /srv/libretime/etc:/etc/airtime \
+ -v /srv/libretime/etc/airtime:/etc/airtime \
+ -v /srv/libretime/etc/icecast2:/etc/icecast2 \
  -v /srv/libretime/postgresql:/var/lib/postgresql \
  -p 80:80 -p 8000:8000 \
  hajo/docker-libretime
 
 For persistence the container will mount
  /etc/airtime
+ /etc/icecast2
  /var/lib/postgresql
  /srv/airtime/stor
  /srv/airtime/watch
