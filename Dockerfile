@@ -58,7 +58,7 @@ RUN /usr/sbin/update-rc.d -f ondemand remove; \
 #
 COPY 1st_start.conf /etc/init
 
-VOLUME ["/etc/airtime", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
+VOLUME ["/etc/airtime", "/etc/icecast2", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
 
 EXPOSE 80 8000
 
